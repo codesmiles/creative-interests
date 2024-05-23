@@ -8,8 +8,8 @@
 
 ## WORDCOUNT CLI
 
-- only works with macos and linux
-- GET http://localhost:8080/cli/ccwc
+- tested on mac
+- ```GET: baseurl/cli/ccwc``` : runs a script to copy the project into your ```/usr/local/bin/ccwc``` directory
 - ccwc -c /path-to-file/file.txt: returns the size of a file in bytes
 - ccwc -l /path-to-file/file.txt: returns the number of lines of texts in a file
 - ccwc -w /path-to-file/file.txt: returns the number of words in a file

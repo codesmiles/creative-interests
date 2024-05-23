@@ -18,18 +18,18 @@ router.get("/", (req, res) => {
 router.get("/ccwc", (req, res) => {
     const filePath = path.join(__dirname,"..", 'ccwc-project/ccwc.js');
     
-    const makeExecutableCommand = `chmod +x ${filePath}`;
-    const moveFileCommand = `sudo cp ${filePath} /usr/local/bin/ccwc`;
+    const make_executable_command = `chmod +x ${filePath}`;
+    const copyFileCommand = `sudo cp ${filePath} /usr/local/bin/ccwc`;
     
     // Execute the commands sequentially
-    exec(`${makeExecutableCommand} && ${moveFileCommand}`, (error, stdout, stderr) => {
+    exec(`${make_executable_command} && ${copyFileCommand}`, (error, stdout, stderr) => {
       if (error) {
         return res.json({error: error.message});
       }
       if (stderr) {
         return res.json({std_error: stderr});
       }
-      res.json({stdout: `success ${stdout}`});
+      res.json({stdout: `success copied the file into your pc ${stdout}`});
     });
 })
 
