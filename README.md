@@ -5,7 +5,8 @@
 - clone the project
 - npm install
 - npm start
-- local-url: http://localhost:8080
+- local-url: http://localhost:8080'
+  
 ## WORDCOUNT CLI
 
 - tested on mac
