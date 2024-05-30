@@ -1,3 +1,27 @@
 # GET http://localhost:8080/
 
-GET http://localhost:8080/cli/ccwc
+### CSRF TOKEN
+# @name cli_route
+# csrf token for secure form submission
+# GET http://localhost:8080/cli/ccwc
+
+### CSRF TOKEN
+# @name api_route
+# csrf token for secure form submission
+GET http://localhost:8080/api
+
+###
+GET http://localhost:8080/api/mailchimp/newsletter_list/members
+Content-Type: application/json
+
+###
+POST http://localhost:8080/api/mailchimp/newsletter_list/members/subscribe
+Content-Type: application/json
+
+{
+    "email_address": "Ebony_Brekke@gmail.com",
+    "status": "pending"
+}
+
+###
+GET http://localhost:8080/api/mailchimp/newsletter_list/members/Ebony_Brekke@gmail.com

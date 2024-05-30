@@ -1,0 +1,51 @@
+{
+    "company": "Tech Solutions Inc.",
+    "employees": [
+        {
+            "id": 1,
+            "name": "Alice Johnson",
+            "position": "Software Engineer",
+            "department": "Development",
+            "email": "alice.johnson@techsolutions.com",
+            "salary": 75000,
+            "hire_date": "2020-05-15"
+        },
+        {
+            "id": 2,
+            "name": "Bob Smith",
+            "position": "Project Manager",
+            "department": "Project Management",
+            "email": "bob.smith@techsolutions.com",
+            "salary": 85000,
+            "hire_date": "2018-03-22"
+        },
+        {
+            "id": 3,
+            "name": "Carol Davis",
+            "position": "Data Analyst",
+            "department": "Analytics",
+            "email": "carol.davis@techsolutions.com",
+            "salary": 65000,
+            "hire_date": "2019-11-01"
+        },
+        {
+            "id": 4,
+            "name": "David Martinez",
+            "position": "DevOps Engineer",
+            "department": "Development",
+            "email": "david.martinez@techsolutions.com",
+            "salary": 78000,
+            "hire_date": "2021-07-18"
+        }
+    ],
+    "address": {
+        "street": "123 Innovation Drive",
+        "city": "Tech City",
+        "state": "CA",
+        "zip": "94000"
+    },
+    "contact": {
+        "phone": "123-456-7890",
+        "email": "info@techsolutions.com"
+    }
+}
