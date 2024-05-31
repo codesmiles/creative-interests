@@ -1,25 +1,21 @@
 require("dotenv").config();
 const express = require("express");
 const expressStatusMonitor = require("express-status-monitor");
-const app = express();
-const cliRoutes = require("./routes/cli");
-const apiRoutes = require("./routes/api");
-
+const server = express();
+const app = require("./api/app");
 // Connect to MongoDB.
 
 // Middlewares & configs setup
-app.use(
+server.use(
   express.urlencoded({ extended: true }),
   express.json({ limit: "100mb" })
 );
-app.disable("x-powered-by");
-app.use(expressStatusMonitor());
+server.disable("x-powered-by");
+server.use(expressStatusMonitor());
+server.use(app);
 
-// routes
-app.use("/cli", cliRoutes);
-app.use("/api", apiRoutes);
 
-app.get("/", (req, res) => res.json({ status: "OK", message: "Welcome" }));
+server.get("/", (req, res) => res.json({ status: "OK", message: "Welcome to creative interests server" }));
 
 // use fs module and file to access files
 const fs = require("fs");
@@ -54,6 +50,6 @@ const parse_json = (data) => {
 
 const port = process.env.PORT || 8080;
 const address = process.env.SERVER_ADDRESS || "localhost";
-app.listen(port, () =>
+server.listen(port, () =>
   console.log(`Server running on http://${address}:${port}`)
 );

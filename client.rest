@@ -1,14 +1,14 @@
-# GET http://localhost:8080/
+GET http://localhost:8080/
 
 ### CSRF TOKEN
 # @name cli_route
 # csrf token for secure form submission
 # GET http://localhost:8080/cli/ccwc
 
-### CSRF TOKEN
+### HEALTH
 # @name api_route
 # csrf token for secure form submission
-GET http://localhost:8080/api
+GET http://localhost:8080/api/health
 
 ###
 GET http://localhost:8080/api/mailchimp/newsletter_list/members

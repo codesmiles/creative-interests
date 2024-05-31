@@ -1,7 +1,3 @@
-const { Router } = require("express");
-const { route } = require("./cli");
-const router = Router();
-const axios = require("axios");
 const client = require("@mailchimp/mailchimp_marketing");
 
 const sendResponse = (successful, message, data = []) => {
@@ -15,15 +11,8 @@ client.setConfig({
     apiKey: process.env.MAILCHIMP_KEY_ACCESS,
     server: process.env.MAILCHIMP_SERVER_PREFIX,
 });
-const root = {
-    newsletter_members: "/mailchimp/newsletter_list/members",
-};
-router.get("/", async (req, res) => {
-    res.json({ status: "OK", message: "Welcome to api route" });
-})
 
-// create
-router.post(`${root.newsletter_members}/subscribe`, async (req, res) => {
+module.exports.subscribe = async (req, res) => {
     const { email_address, status, others = {} } = req.body;
   
     if (!email_address) {
@@ -40,23 +29,21 @@ router.post(`${root.newsletter_members}/subscribe`, async (req, res) => {
     } catch (error) {
       return res.json(sendResponse(false, "error", error));
     }
-  });
-
-//   read
-router.get(root.newsletter_members, async (req, res) => {
-  
-  try {
-    const response = await client.lists.getListMembersInfo(
-      process.env.MAILCHIMP_LIST_ID
-    );
-    return res.json(sendResponse(true, "success", response));
-  } catch (error) {
-    return res.json(sendResponse(false, "error", error));
   }
-});
 
-// read single
-router.get(`${root.newsletter_members}/:subscriber_hash`, async (req, res) => {
+  module.exports.getAll = async (req, res) => {
+  
+    try {
+      const response = await client.lists.getListMembersInfo(
+        process.env.MAILCHIMP_LIST_ID
+      );
+      return res.json(sendResponse(true, "success", response));
+    } catch (error) {
+      return res.json(sendResponse(false, "error", error));
+    }
+  }
+
+  module.exports.findWhere = async (req, res) => {
     try {
         const { subscriber_hash } = await req.params;
         
@@ -68,10 +55,9 @@ router.get(`${root.newsletter_members}/:subscriber_hash`, async (req, res) => {
     } catch (error) {
         return res.json(sendResponse(false, "error", error));
     }
-})
+}
 
-// update
-router.post(`${root.newsletter_members}/:subscriber_hash/update_or_create`, async (req, res) => {
+module.exports.updateOrCreate = async (req, res) => {
     try {
         const { subscriber_hash } = await req.params;
         const { email_address, status} = req.body;
@@ -85,10 +71,9 @@ router.post(`${root.newsletter_members}/:subscriber_hash/update_or_create`, asyn
     } catch (error) {
         return res.json(sendResponse(false, "error", error));
     }
-})
+}
 
-// archive
-router.post(`${root.newsletter_members}/:subscriber_hash/delete`, async (req, res) => {
+module.exports.archive = async (req, res) => {
     try {
         const { subscriber_hash } = await req.params;
         
@@ -100,9 +85,9 @@ router.post(`${root.newsletter_members}/:subscriber_hash/delete`, async (req, re
     } catch (error) {
         return res.json(sendResponse(false, "error", error));
     }
-})
-// delete
-router.post(`${root.newsletter_members}/:subscriber_hash/delete`, async (req, res) => {
+}
+
+module.exports.forceDelete =  async (req, res) => {
     try {
         const { subscriber_hash } = await req.params;
         
@@ -114,6 +99,4 @@ router.post(`${root.newsletter_members}/:subscriber_hash/delete`, async (req, re
     } catch (error) {
         return res.json(sendResponse(false, "error", error));
     }
-})
-
-module.exports = router;
+}
