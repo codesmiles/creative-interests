@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
-// const axios = require("axios");
-const mailchimpServices = require("../../services/api/mailchimp");
+
+const mailchimpController = require("../../controller/api/mailchimp");
 
 const root = {
   newsletter_members: "/mailchimp/newsletter_list/members",
@@ -13,33 +13,33 @@ router.get("/health", async (req, res) => {
 // create
 router.post(
   `${root.newsletter_members}/subscribe`,
-  mailchimpServices.subscribe
+  mailchimpController.subscribe
 );
 
 //   read
-router.get(root.newsletter_members, mailchimpServices.getAll);
+router.get(root.newsletter_members, mailchimpController.getAll);
 
 // read single
 router.get(
   `${root.newsletter_members}/:subscriber_hash`,
-  mailchimpServices.findWhere
+  mailchimpController.findWhere
 );
 
 // update
 router.post(
   `${root.newsletter_members}/update_or_create/:subscriber_hash`,
-  mailchimpServices.updateOrCreate
+  mailchimpController.updateOrCreate
 );
 
 // archive
 router.post(
-  `${root.newsletter_members}/delete/:subscriber_hash`,
-  mailchimpServices.archive
+  `${root.newsletter_members}/unsubscribe/:subscriber_hash`,
+  mailchimpController.archive
 );
 // delete
 router.post(
   `${root.newsletter_members}/force_delete/:subscriber_hash`,
-  mailchimpServices.forceDelete
+  mailchimpController.forceDelete
 );
 
 module.exports = router;
