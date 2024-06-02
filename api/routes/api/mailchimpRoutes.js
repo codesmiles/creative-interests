@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 
-const mailchimpController = require("../../controller/api/mailchimp");
+const mailchimpController = require("../../controller/api/mailchimpController");
 
 const root = {
   newsletter_members: "/mailchimp/newsletter_list/members",

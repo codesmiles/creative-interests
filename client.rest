@@ -11,8 +11,12 @@ GET http://localhost:8080/
 GET http://localhost:8080/api/health
 
 ###
-GET http://localhost:8080/api/mailchimp/newsletter_list/members
+# 5a74ba70c77bbdf7272b134de41dd640
+GET http://localhost:8080/api/mailchimp/newsletter_list/members/6c54666c8cf69dcc9e1e00962298451f?skipMergeValidation=true&excludeFields=email_address,password,merge_fields
 Content-Type: application/json
+
+###
+GET http://localhost:8080/api/mailchimp/newsletter_list/members?count=2
 
 ###
 POST http://localhost:8080/api/mailchimp/newsletter_list/members/subscribe

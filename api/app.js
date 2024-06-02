@@ -3,7 +3,7 @@ const app = Router();
 
 
 const cliRoutes = require("./routes/cli");
-const mailchimp_api_routes = require("./routes/api/mailchimp");
+const mailchimp_api_routes = require("./routes/api/mailchimpRoutes");
 
 // routes
 app.use("/cli", cliRoutes);
