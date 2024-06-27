@@ -34,17 +34,17 @@ const parse_json = (data) => {
 
   if (data[data.length - 2] === ",") return data.slice(0, -2) + data.slice(-1);
 
-  // const unquoted_keys = /(?<=\{|,)\s*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*:/g;
-  // data = data.replace(unquoted_keys, '"$1":');;
-
-  return data.trim().slice(1, -1).split(" ").join("");
-  return data
-    .slice(1, -1)
-    .split(",")
-    .map((el, i, arr) => {
-      arr[i] = el.split(": ")[1].toLowerCase();
-      return arr;
-    });
+  const unquoted_keys = /(?<=\{|,)\s*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*:/g;
+  data = data.replace(unquoted_keys, '"$1":');;
+  return data;
+  // return data.trim().slice(1, -1).split(" ").join("");
+  // return data
+  //   .slice(1, -1)
+  //   .split(",")
+  //   .map((el, i, arr) => {
+  //     arr[i] = el.split(": ")[1].toLowerCase();
+  //     return arr;
+  //   });
 };
 // console.log(parse_json(file));
 
